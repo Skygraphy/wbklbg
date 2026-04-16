@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de" data-theme="wimmelbuch">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Wimmelbuch Klosterneuburg – 12 Doppelseiten, 12 Monate, unzählige Entdeckungen. Handgezeichnet von Ines Wohlmuth."
+		/>
+		<meta property="og:title" content="Wimmelbuch Klosterneuburg" />
+		<meta
+			property="og:description"
+			content="Eine Reise rund ums Jahr durch die schöne Stadt Klosterneuburg – handgezeichnet mit Liebe."
+		/>
+		<meta property="og:image" content="%sveltekit.assets%/images/og-image.jpg" />
+		<meta property="og:type" content="website" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
