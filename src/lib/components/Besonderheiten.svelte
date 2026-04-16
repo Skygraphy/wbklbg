@@ -51,25 +51,69 @@
 
 	<!-- 12 months visual -->
 	<div class="mt-16">
-		<h3 class="font-display text-2xl font-semibold text-center mb-6">12 Monate – 12 besondere Momente</h3>
+		<h3 class="section-heading text-center mb-2">12 Monate – 12 besondere Momente</h3>
+		<p class="section-subheading text-center mb-8">Das ganze Jahr über gibt es in Klosterneuburg etwas zu entdecken</p>
 		<div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
 			{#each [
-				{ month: 'Jänner', emoji: '❄️' },
-				{ month: 'Februar', emoji: '🎭' },
-				{ month: 'März', emoji: '🌱' },
-				{ month: 'April', emoji: '🌸' },
-				{ month: 'Mai', emoji: '🌺' },
-				{ month: 'Juni', emoji: '☀️' },
-				{ month: 'Juli', emoji: '🏊' },
-				{ month: 'August', emoji: '🍦' },
-				{ month: 'September', emoji: '🍂' },
-				{ month: 'Oktober', emoji: '🎃' },
-				{ month: 'November', emoji: '🕯️' },
-				{ month: 'Dezember', emoji: '🎄' }
-			] as m}
-				<div class="rounded-bento bg-base-200 p-3 text-center transition-colors hover:bg-base-300">
-					<div class="text-2xl mb-1">{m.emoji}</div>
-					<div class="text-xs text-base-content/60 font-semibold">{m.month}</div>
+				{
+					name: 'Wintertag',
+					img: 'https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Faschingsumzug',
+					img: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Ostermarkt',
+					img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Entenrennen',
+					img: 'https://images.unsplash.com/photo-1609771655165-0ae96b5dff9f?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Mittelalterfest',
+					img: 'https://images.unsplash.com/photo-1533662635785-535b68c57a64?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Feuerwehrheuriger',
+					img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'ISTA',
+					img: 'https://images.unsplash.com/photo-1547153760-18fc86324498?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Sommertag',
+					img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Schulbeginn',
+					img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Weinhügelwandertag',
+					img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Leopoldimarkt',
+					img: 'https://images.unsplash.com/photo-1467354292059-97b534d14cf6?w=400&h=400&fit=crop&auto=format&q=80'
+				},
+				{
+					name: 'Adventmarkt',
+					img: 'https://images.unsplash.com/photo-1482852152279-8dfc77c0d48f?w=400&h=400&fit=crop&auto=format&q=80'
+				}
+			] as event}
+				<div class="group relative overflow-hidden rounded-bento cursor-default">
+					<img
+						src={event.img}
+						alt={event.name}
+						class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+					<div class="relative flex aspect-square items-end justify-center p-2">
+						<span class="text-white text-xs font-bold leading-tight drop-shadow-md text-center">{event.name}</span>
+					</div>
 				</div>
 			{/each}
 		</div>

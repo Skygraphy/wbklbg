@@ -6,8 +6,10 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				display: ['"Playfair Display"', 'Georgia', 'serif'],
-				body: ['"Source Sans 3"', 'system-ui', 'sans-serif']
+				display: ['system-ui', 'sans-serif'],
+				body: ['system-ui', 'sans-serif'],
+				amatic: ['"Amatic SC"', 'cursive'],
+				sacramento: ['Sacramento', 'cursive']
 			},
 			borderRadius: {
 				bento: '1.25rem'
