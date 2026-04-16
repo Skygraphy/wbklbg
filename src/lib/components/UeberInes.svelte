@@ -1,6 +1,8 @@
 <script lang="ts">
 	import SectionWrapper from '$lib/ui/SectionWrapper.svelte';
 
+	let portraitFailed = $state(false);
+
 	const career = [
 		{
 			label: 'Kindheit & Schulzeit',
@@ -42,21 +44,24 @@
 		<div class="flex justify-center">
 			<div class="relative">
 				<div class="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-bento shadow-lg">
-					<img
-						src="/images/ines-portrait.jpg"
-						alt="Ines Wohlmuth, Autorin des Wimmelbuch Klosterneuburg"
-						class="h-full w-full object-cover"
-						onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-					/>
-					<div
-						class="hidden h-full w-full flex-col items-center justify-center bg-base-200 text-base-content/30 min-h-96"
-						aria-hidden="true"
-					>
-						<svg class="h-16 w-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-						</svg>
-						<span class="text-sm">Ines Wohlmuth</span>
-					</div>
+					{#if !portraitFailed}
+						<img
+							src="/images/ines-portrait.jpg"
+							alt="Ines Wohlmuth, Autorin des Wimmelbuch Klosterneuburg"
+							class="h-full w-full object-cover"
+							onerror={() => (portraitFailed = true)}
+						/>
+					{:else}
+						<div
+							class="flex h-full min-h-96 w-full flex-col items-center justify-center bg-base-200 text-base-content/30"
+							aria-hidden="true"
+						>
+							<svg class="h-16 w-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+							</svg>
+							<span class="text-sm">Ines Wohlmuth</span>
+						</div>
+					{/if}
 				</div>
 				<!-- Decorative badge -->
 				<div class="absolute -bottom-4 -right-4 rounded-bento bg-primary p-3 shadow-lg text-primary-content text-center">

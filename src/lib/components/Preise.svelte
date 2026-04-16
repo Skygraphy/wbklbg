@@ -30,7 +30,7 @@
 	<div class="flex flex-col sm:flex-row justify-center items-stretch gap-6 max-w-2xl mx-auto">
 		{#each tiers as tier}
 			<div
-				class="card flex-1 shadow-md transition-transform duration-200
+				class="card flex-1 relative shadow-md transition-transform duration-200
 				       {tier.highlight
 						? 'bg-primary text-primary-content scale-105 shadow-lg'
 						: 'bg-base-100'}"

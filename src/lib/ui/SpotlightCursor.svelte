@@ -26,6 +26,7 @@
 
 <div
 	bind:this={heroEl}
+	role="banner"
 	onmousemove={handleMouseMove}
 	onmouseleave={handleMouseLeave}
 	class="relative min-h-[92vh] overflow-hidden flex items-center section-padding"

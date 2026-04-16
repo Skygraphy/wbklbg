@@ -1,13 +1,12 @@
 import type { LayoutServerLoad } from './$types';
+import { getPopupStands } from '$lib/server/db';
 
 export const load: LayoutServerLoad = async () => {
 	try {
-		// Dynamic import to avoid build errors when NEON_DATABASE_URL is not set
-		const { getPopupStands } = await import('$lib/server/db');
 		const popupStands = await getPopupStands();
 		return { popupStands };
 	} catch {
-		// Return empty array if DB is not configured yet
+		// Return empty array if DB is not configured
 		return { popupStands: [] };
 	}
 };
