@@ -52,9 +52,29 @@ export default {
 					warning: '#D97706',
 					error: '#C2714F'
 				}
+			},
+			{
+				'wimmelbuch-dark': {
+					primary: '#C47C20',
+					'primary-content': '#F5E4CC',
+					secondary: '#A85C3C',
+					'secondary-content': '#F5E4CC',
+					accent: '#6A8C68',
+					'accent-content': '#F5E4CC',
+					neutral: '#2E1F12',
+					'neutral-content': '#E8D5BC',
+					'base-100': '#1A1108',
+					'base-200': '#231710',
+					'base-300': '#2E1F14',
+					'base-content': '#E8D5BC',
+					info: '#6A8C68',
+					success: '#6A8C68',
+					warning: '#C47C20',
+					error: '#A85C3C'
+				}
 			}
 		],
-		darkTheme: false,
+		darkTheme: 'wimmelbuch-dark',
 		base: true,
 		styled: true,
 		utils: true,

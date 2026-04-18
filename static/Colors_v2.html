@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wimmelbuch – Farbpalette nach Monaten</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 2.5rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e0e0e0;
+      opacity: 0.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1rem;
+    }
+    .row {
+      display: flex;
+      align-items: stretch;
+      border-radius: 1.1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+    .block {
+      flex: 1;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .month {
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+    .text {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .meta {
+      width: 118px;
+      flex-shrink: 0;
+      background: rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.8rem 1rem;
+    }
+    .hex-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .hex-label {
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      color: #fff;
+    }
+    .hex-val {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #fff;
+    }
+    .swatch {
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wimmelbuch Klosterneuburg · Farbpalette</h1>
+  <div class="grid">
+
+    <!-- Jänner – Eisblau -->
+    <div class="row">
+      <div class="block" style="background:#C8E6F5; color:#0D3349;">
+        <span class="month">Jänner</span>
+        <span class="text">Stille Wintertage am zugefrorenen Donauufer.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#C8E6F5;"></span>#C8E6F5</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#0D3349;"></span>#0D3349</span></div>
+      </div>
+    </div>
+
+    <!-- Februar – Karnevalsviolett -->
+    <div class="row">
+      <div class="block" style="background:#6A0DAD; color:#F9E4FF;">
+        <span class="month">Februar</span>
+        <span class="text">Narren und Masken beim bunten Faschingsumzug.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#6A0DAD;"></span>#6A0DAD</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#F9E4FF;"></span>#F9E4FF</span></div>
+      </div>
+    </div>
+
+    <!-- März – Frühlingsgrün -->
+    <div class="row">
+      <div class="block" style="background:#2D6A4F; color:#D8F3DC;">
+        <span class="month">März</span>
+        <span class="text">Erste Knospen treiben aus, Ostern naht.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#2D6A4F;"></span>#2D6A4F</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#D8F3DC;"></span>#D8F3DC</span></div>
+      </div>
+    </div>
+
+    <!-- April – Lavendel -->
+    <div class="row">
+      <div class="block" style="background:#E0C3FC; color:#3A0D6E;">
+        <span class="month">April</span>
+        <span class="text">Ostermarkt duftet nach Hyazinthen und Regen.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#E0C3FC;"></span>#E0C3FC</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#3A0D6E;"></span>#3A0D6E</span></div>
+      </div>
+    </div>
+
+    <!-- Mai – Aquamarin -->
+    <div class="row">
+      <div class="block" style="background:#0096C7; color:#E0F7FF;">
+        <span class="month">Mai</span>
+        <span class="text">Entenrennen – Jubel am plätschernden Donauufer.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#0096C7;"></span>#0096C7</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#E0F7FF;"></span>#E0F7FF</span></div>
+      </div>
+    </div>
+
+    <!-- Juni – Blutrot -->
+    <div class="row">
+      <div class="block" style="background:#A4161A; color:#FFF1F1;">
+        <span class="month">Juni</span>
+        <span class="text">Mittelalterfest: Ritter, Feuer und Fanfarenklang.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#A4161A;"></span>#A4161A</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#FFF1F1;"></span>#FFF1F1</span></div>
+      </div>
+    </div>
+
+    <!-- Juli – Sonnengelb -->
+    <div class="row">
+      <div class="block" style="background:#FFD60A; color:#1A1200;">
+        <span class="month">Juli</span>
+        <span class="text">Hochsommer, Feuerwehrheuriger, kühles Bier.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#FFD60A;"></span>#FFD60A</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#1A1200;"></span>#1A1200</span></div>
+      </div>
+    </div>
+
+    <!-- August – Koralle -->
+    <div class="row">
+      <div class="block" style="background:#FF6B35; color:#1A0800;">
+        <span class="month">August</span>
+        <span class="text">ISTA-Tänzer wirbeln durch glühende Augustabende.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#FF6B35;"></span>#FF6B35</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#1A0800;"></span>#1A0800</span></div>
+      </div>
+    </div>
+
+    <!-- September – Weinrot -->
+    <div class="row">
+      <div class="block" style="background:#F8E0C8; color:#5C1A00;">
+        <span class="month">September</span>
+        <span class="text">Weinhügelwandertag durch goldene Rebzeilen.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#F8E0C8;"></span>#F8E0C8</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#5C1A00;"></span>#5C1A00</span></div>
+      </div>
+    </div>
+
+    <!-- Oktober – Rost -->
+    <div class="row">
+      <div class="block" style="background:#BC4A00; color:#FFF3E8;">
+        <span class="month">Oktober</span>
+        <span class="text">Kastanien fallen, Schulbeginn, Herbstgeruch überall.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#BC4A00;"></span>#BC4A00</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#FFF3E8;"></span>#FFF3E8</span></div>
+      </div>
+    </div>
+
+    <!-- November – Nebel -->
+    <div class="row">
+      <div class="block" style="background:#3D4451; color:#C9D1E0;">
+        <span class="month">November</span>
+        <span class="text">Leopoldimarkt im Nebel, Punschduft in der Luft.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#3D4451;"></span>#3D4451</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#C9D1E0;"></span>#C9D1E0</span></div>
+      </div>
+    </div>
+
+    <!-- Dezember – Mitternacht & Gold -->
+    <div class="row">
+      <div class="block" style="background:#0D1B2A; color:#C9A84C;">
+        <span class="month">Dezember</span>
+        <span class="text">Adventmarkt beim Stift im Kerzenschein.</span>
+      </div>
+      <div class="meta">
+        <div class="hex-row"><span class="hex-label">BG</span><span class="hex-val"><span class="swatch" style="background:#0D1B2A;"></span>#0D1B2A</span></div>
+        <div class="hex-row"><span class="hex-label">FG</span><span class="hex-val"><span class="swatch" style="background:#C9A84C;"></span>#C9A84C</span></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

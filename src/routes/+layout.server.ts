@@ -1,12 +1,15 @@
 import type { LayoutServerLoad } from './$types';
-import { getPopupStands } from '$lib/server/db';
+import { getPopupStands, getPickupLocations, getActivePromotions } from '$lib/server/db';
 
 export const load: LayoutServerLoad = async () => {
 	try {
-		const popupStands = await getPopupStands();
-		return { popupStands };
+		const [popupStands, pickupLocations, promotions] = await Promise.all([
+			getPopupStands(),
+			getPickupLocations(),
+			getActivePromotions()
+		]);
+		return { popupStands, pickupLocations, promotions };
 	} catch {
-		// Return empty array if DB is not configured
-		return { popupStands: [] };
+		return { popupStands: [], pickupLocations: [], promotions: [] };
 	}
 };

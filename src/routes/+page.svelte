@@ -17,8 +17,8 @@
 
 <main>
 	<Hero />
-	<Bezugsmoeglichkeiten popupStands={data.popupStands} />
-	<Preise />
+	<Bezugsmoeglichkeiten popupStands={data.popupStands} pickupLocations={data.pickupLocations} />
+	<Preise promotions={data.promotions} />
 	<Besonderheiten />
 	<Entstehung />
 	<UeberInes />

@@ -10,58 +10,59 @@
 
 	const steps = [
 		{
-			title: 'Stadtspaziergang & Recherche',
+			title: 'Alles beginnt vor Ort',
 			description:
-				'Mit Notizbuch und Kamera durch Klosterneuburg: Motive suchen, Stimmungen einfangen, Besonderheiten des jeweiligen Monats dokumentieren.',
-			image: '/images/creation-steps/step-1.jpg'
+				'Ich habe jede Veranstaltung und jeden Ort persönlich besucht – mit der Kamera im Anschlag. Menschen in Bewegung, liebevolle Details, Gebäude, die die Stimmung einfangen – alles wurde dokumentiert.',
+			image: '/images/making_off/01_vor_ort.jpg'
 		},
 		{
-			title: 'Skizzen & Komposition',
+			title: 'Die erste Skizze entsteht',
 			description:
-				'Aus unzähligen Eindrücken entsteht eine erste Rohskizze. Wo stehen die Figuren? Welche Details erzählen die Geschichte des Monats?',
-			image: '/images/creation-steps/step-2.jpg'
+				'Mit Bleistift plane ich das Bild – was kommt wohin, welche Szenen sollen unbedingt hinein?',
+			image: '/images/making_off/02_die_erste_skizze_entsteht.JPG'
 		},
 		{
-			title: 'Feinzeichnung mit Tusche',
+			title: 'Fotos sortieren und ausdrucken',
 			description:
-				'Jede Linie wird mit dem Tuschepin präzise nachgezogen. Dieser Schritt erfordert ruhige Hände und absolute Konzentration.',
-			image: '/images/creation-steps/step-3.jpg'
+				'Am Computer werden die besten Fotos ausgewählt, angepasst und in der passenden Größe ausgedruckt.',
+			image: '/images/making_off/03_fotos_sortieren_und_ausdrucken.JPG'
 		},
 		{
-			title: 'Kolorierung mit Aquarell',
+			title: 'Zeichnen mit dem Lightpad',
 			description:
-				'Mit Aquarellfarben werden die Szenen zum Leben erweckt. Die warmen, leuchtenden Farbtöne geben dem Buch seinen unverkennbaren Charakter.',
-			image: '/images/creation-steps/step-4.jpg'
+				'Jetzt beginnt die eigentliche Magie. Mit Bleistift zeichne ich Schicht für Schicht das große Ganze. Dabei wird viel radiert, ergänzt und neu gedacht.',
+			image: '/images/making_off/04_zeichnen_mit_dem_lightpad.JPG'
 		},
 		{
-			title: 'Details & Wimmelfiguren',
+			title: 'Geduldsspiel Outlines',
 			description:
-				'Jetzt kommen die versteckten Details: kleine Figuren, lustige Szenen, lokale Anspielungen – all die Dinge, die man erst beim zweiten Hinsehen entdeckt.',
-			image: '/images/creation-steps/step-5.jpg'
+				'Mit einem hauchdünnen schwarzen Stift werden alle Linien sauber nachgezogen – jeder Strich zählt.',
+			image: '/images/making_off/05_geduldspiel_outlines.JPG'
 		},
 		{
-			title: 'Scan & Druckvorbereitung',
+			title: 'Farbe bringt Leben',
 			description:
-				'Das fertige Original wird hochaufgelöst eingescannt und für den professionellen Druck optimiert – Farben, Format und Druckdaten werden abgestimmt.',
-			image: '/images/creation-steps/step-6.jpg'
+				'Mit intensiven Alkoholmarkern erwecke ich das Bild zum Leben. Die Farben leuchten, Schatten geben Tiefe – aber wehe, sie verlaufen! Das erfordert Fingerspitzengefühl.',
+			image: '/images/making_off/06_farbe_bringt_leben.JPG'
 		},
 		{
-			title: 'Testdruck & Korrektur',
+			title: 'Rätseln erlaubt',
 			description:
-				'Ein erster Testdruck zeigt, ob die Farben und Details stimmen. Kleinste Korrekturen werden vorgenommen, bis alles perfekt ist.',
-			image: '/images/creation-steps/step-7.jpg'
+				'Um noch mehr Entdeckungslust zu wecken, habe ich spannende Quizfragen rund um das Bild eingebaut.',
+			image: '/images/making_off/07_raetseln_erlaubt.jpg'
 		},
 		{
-			title: 'Druckfreigabe & Buchbindung',
+			title: 'Probedruck und Feinschliff',
 			description:
-				'Nach finaler Freigabe geht das Buch in den Druck. Hochwertige Materialien und professionelle Buchbindung sorgen für ein langlebiges Ergebnis.',
-			image: '/images/creation-steps/step-8.jpg'
+				'Ein erster Testdruck zeigt, wo noch etwas verbessert werden muss – Farben, Schriften, Details.',
+			image: '/images/making_off/08_probedruck_und_feinschliff.JPG'
 		},
 		{
-			title: 'Auslieferung & Freude',
+			title: 'Ein Traum wird wahr',
 			description:
-				'Das fertige Buch ist da! Der schönste Moment: wenn die ersten Leserinnen und Leser eintauchen und alle versteckten Details entdecken.',
-			image: '/images/creation-steps/step-9.jpg'
+				'Nach über 1,5 Jahren halte ich mein erstes eigenes Wimmelbuch in den Händen. Es gab Momente, in denen ich fast aufgeben wollte – aber ich wusste: <strong class="text-primary">Diese Arbeit lohnt sich.</strong>',
+			image: '/images/making_off/09_ein_traum_wird_wahr.jpg',
+			objectPosition: 'center bottom'
 		}
 	];
 </script>
@@ -88,12 +89,13 @@
 				</div>
 
 				<!-- Image placeholder / real image -->
-				<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-base-300">
+				<div class="aspect-square w-full overflow-hidden rounded-xl bg-base-300">
 					{#if !failedImages.has(i)}
 						<img
 							src={step.image}
 							alt={step.title}
 							class="h-full w-full object-cover"
+							style="object-position: {step.objectPosition ?? 'center'}"
 							onerror={() => onImageError(i)}
 						/>
 					{:else}
@@ -109,7 +111,7 @@
 					{/if}
 				</div>
 
-				<p class="text-sm text-base-content/70 leading-relaxed flex-1">{step.description}</p>
+				<p class="text-sm text-base-content/70 leading-relaxed flex-1 whitespace-pre-line">{@html step.description}</p>
 			</BentoCard>
 		{/each}
 	</div>

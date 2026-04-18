@@ -4,7 +4,7 @@
 
 	const features = [
 		{
-			title: 'Handgezeichnet – kein Pixel Digitales',
+			title: 'Handgezeichnet – von A bis Z',
 			description:
 				'Jede einzelne Szene wurde liebevoll von Hand gezeichnet, ganz ohne digitale Tricks oder Bearbeitungsprogramme. Mit Stift, Papier und viel Geduld ist ein einzigartiges Bild von Klosterneuburg entstanden, wie du es noch nie gesehen hast.',
 			icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -12,7 +12,7 @@
 			</svg>`
 		},
 		{
-			title: 'Echtes Klosterneuburg-Wissen',
+			title: 'Warum gerade Klosterneuburg?',
 			description:
 				'Weil ich, die Autorin, hier zu Hause bin. Als gebürtige Klosterneuburgerin kenne ich die Stadt mit all ihren Ecken, Geschichten und Geheimnissen. Ob legendäre Veranstaltungen, versteckte Lieblingsplätze oder Details, die man erst auf den zweiten Blick entdeckt – alles hat seinen Platz gefunden.',
 			icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -37,9 +37,9 @@
 		<p class="section-subheading">Ein Buch mit Seele – für Kinder, Eltern und alle, die Klosterneuburg lieben</p>
 	</div>
 
-	<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+	<div class="grid grid-cols-1 gap-6 md:grid-cols-3 items-stretch">
 		{#each features as feature, i}
-			<BentoCard class="flex flex-col gap-4 {i === 1 ? 'md:mt-6' : ''}">
+			<BentoCard class="flex flex-col gap-4 h-full">
 				<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
 					{@html feature.icon}
 				</div>
@@ -55,54 +55,18 @@
 		<p class="section-subheading text-center mb-8">Das ganze Jahr über gibt es in Klosterneuburg etwas zu entdecken</p>
 		<div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
 			{#each [
-				{
-					name: 'Wintertag',
-					img: 'https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Faschingsumzug',
-					img: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Ostermarkt',
-					img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Entenrennen',
-					img: 'https://images.unsplash.com/photo-1609771655165-0ae96b5dff9f?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Mittelalterfest',
-					img: 'https://images.unsplash.com/photo-1533662635785-535b68c57a64?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Feuerwehrheuriger',
-					img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'ISTA',
-					img: 'https://images.unsplash.com/photo-1547153760-18fc86324498?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Sommertag',
-					img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Schulbeginn',
-					img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Weinhügelwandertag',
-					img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Leopoldimarkt',
-					img: 'https://images.unsplash.com/photo-1467354292059-97b534d14cf6?w=400&h=400&fit=crop&auto=format&q=80'
-				},
-				{
-					name: 'Adventmarkt',
-					img: 'https://images.unsplash.com/photo-1482852152279-8dfc77c0d48f?w=400&h=400&fit=crop&auto=format&q=80'
-				}
+				{ name: 'Wintertag',          img: '/images/thumbs/01.jpg', color: 'rgba(220,235,255,0.90)' },
+				{ name: 'Faschingsumzug',     img: '/images/thumbs/02.jpg', color: 'rgba(253,220,100,0.92)' },
+				{ name: 'Ostermarkt',         img: '/images/thumbs/03.jpg', color: 'rgba(184,212,182,0.92)' },
+				{ name: 'Entenrennen',        img: '/images/thumbs/04.jpg', color: 'rgba(124,200,180,0.92)' },
+				{ name: 'Mittelalterfest',    img: '/images/thumbs/05.jpg', color: 'rgba(253,210,140,0.92)' },
+				{ name: 'Feuerwehrheuriger',  img: '/images/thumbs/06.jpg', color: 'rgba(255,160,100,0.92)' },
+				{ name: 'ISTA',               img: '/images/thumbs/07.jpg', color: 'rgba(217,119,6,0.95)'   },
+				{ name: 'Sommertag',          img: '/images/thumbs/08.jpg', color: 'rgba(253,230,138,0.92)' },
+				{ name: 'Schulbeginn',        img: '/images/thumbs/09.jpg', color: 'rgba(194,113,79,0.95)'  },
+				{ name: 'Weinhügelwandertag', img: '/images/thumbs/10.jpg', color: 'rgba(220,130,100,0.92)' },
+				{ name: 'Leopoldimarkt',      img: '/images/thumbs/11.jpg', color: 'rgba(217,119,6,0.95)'   },
+				{ name: 'Adventmarkt',        img: '/images/thumbs/12.jpg', color: 'rgba(240,190,180,0.92)' }
 			] as event}
 				<div class="group relative overflow-hidden rounded-bento cursor-default">
 					<img
@@ -112,7 +76,10 @@
 					/>
 					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 					<div class="relative flex aspect-square items-end justify-center p-2">
-						<span class="text-white text-xs font-bold leading-tight drop-shadow-md text-center">{event.name}</span>
+						<span
+							class="text-xs font-bold drop-shadow-md truncate w-full text-center"
+							style="color: {event.color}"
+						>{event.name}</span>
 					</div>
 				</div>
 			{/each}

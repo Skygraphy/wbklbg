@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wimmelbuch – Farbpalette</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f0ece4;
+      padding: 3rem 2rem;
+    }
+
+    h1 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .slab {
+      height: 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .month-label {
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      opacity: 0.6;
+    }
+
+    .month-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .footer {
+      background: #fff;
+      padding: 0.75rem 1.4rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .hex-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hex-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    .hex-value {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: monospace;
+      color: #333;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wimmelbuch Klosterneuburg &middot; Farbpalette nach Monaten</h1>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="slab" style="background:#B8D8E8; color:#1C3F52;">
+        <div class="month-label">Jänner</div>
+        <div class="month-text">Stille Wintertage am Donauufer.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#B8D8E8;"></span>#B8D8E8</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#1C3F52;"></span>#1C3F52</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#E040A0; color:#FFF0F9;">
+        <div class="month-label">Februar</div>
+        <div class="month-text">Narren und Masken tanzen durch die Stadt.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#E040A0;"></span>#E040A0</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#FFF0F9;"></span>#FFF0F9</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#A8D5A2; color:#1A3A18;">
+        <div class="month-label">März</div>
+        <div class="month-text">Erste Blüten erwachen im Stiftsgarten.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#A8D5A2;"></span>#A8D5A2</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#1A3A18;"></span>#1A3A18</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#FFF176; color:#3A2800;">
+        <div class="month-label">April</div>
+        <div class="month-text">Ostermarkt duftet nach Hyazinthen und Regen.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#FFF176;"></span>#FFF176</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#3A2800;"></span>#3A2800</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#29B6D8; color:#002E3B;">
+        <div class="month-label">Mai</div>
+        <div class="month-text">Entenrennen – Jubel an der plätschernden Donau.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#29B6D8;"></span>#29B6D8</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#002E3B;"></span>#002E3B</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#5C2D91; color:#EDD9FF;">
+        <div class="month-label">Juni</div>
+        <div class="month-text">Mittelalterfest mit Rittern und Fanfaren.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#5C2D91;"></span>#5C2D91</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#EDD9FF;"></span>#EDD9FF</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#FFAB00; color:#1F1300;">
+        <div class="month-label">Juli</div>
+        <div class="month-text">Sommerhitze, Heuriger, laue Abende.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#FFAB00;"></span>#FFAB00</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#1F1300;"></span>#1F1300</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#FF5722; color:#FFF3EF;">
+        <div class="month-label">August</div>
+        <div class="month-text">ISTA-Tänzer wirbeln durch glühende Nächte.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#FF5722;"></span>#FF5722</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#FFF3EF;"></span>#FFF3EF</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#C5A35A; color:#1E1000;">
+        <div class="month-label">September</div>
+        <div class="month-text">Weinhügelwandertag durch goldene Rebzeilen.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#C5A35A;"></span>#C5A35A</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#1E1000;"></span>#1E1000</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#BF360C; color:#FFF3EE;">
+        <div class="month-label">Oktober</div>
+        <div class="month-text">Kastanien fallen, Schulbeginn, Herbst überall.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#BF360C;"></span>#BF360C</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#FFF3EE;"></span>#FFF3EE</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#546E7A; color:#E0EEF2;">
+        <div class="month-label">November</div>
+        <div class="month-text">Leopoldimarkt im Nebel, Punsch dampft.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#546E7A;"></span>#546E7A</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#E0EEF2;"></span>#E0EEF2</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slab" style="background:#1A237E; color:#E8EAF6;">
+        <div class="month-label">Dezember</div>
+        <div class="month-text">Adventmarkt beim Stift im Kerzenschein.</div>
+      </div>
+      <div class="footer">
+        <div class="hex-group"><div class="hex-label">BG</div><div class="hex-value"><span class="dot" style="background:#1A237E;"></span>#1A237E</div></div>
+        <div class="hex-group"><div class="hex-label">FG</div><div class="hex-value"><span class="dot" style="background:#E8EAF6;"></span>#E8EAF6</div></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

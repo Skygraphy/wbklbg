@@ -2,19 +2,20 @@
 	import SectionWrapper from '$lib/ui/SectionWrapper.svelte';
 	import BentoCard from '$lib/ui/BentoCard.svelte';
 	import type { PopupStand } from '$lib/types/popup-stand';
+	import type { PickupLocation } from '$lib/types/pickup-location';
 
 	interface Props {
 		popupStands: PopupStand[];
+		pickupLocations: PickupLocation[];
 	}
-	const { popupStands }: Props = $props();
+	const { popupStands, pickupLocations }: Props = $props();
 
-	const pickupLocations = [
-		{ name: 'Stadtmarketing Klosterneuburg', icon: '🏛️', detail: 'Rathausplatz' },
-		{ name: 'Rathaus Klosterneuburg', icon: '🏢', detail: 'Stadtgemeinde' },
-		{ name: 'Buchhandlung', icon: '📚', detail: 'In der Innenstadt' },
-		{ name: 'Ausgewählte Heurige', icon: '🍷', detail: 'Rund ums Wachau-Gebiet' },
-		{ name: 'Gastbetriebe', icon: '🍽️', detail: 'Partnerrestaurants' }
-	];
+	function initials(name: string): string {
+		const words = name.trim().split(/\s+/);
+		return words.length === 1
+			? words[0][0].toUpperCase()
+			: (words[0][0] + words[1][0]).toUpperCase();
+	}
 
 	function formatDate(dateStr: string): string {
 		const d = new Date(dateStr);
@@ -26,6 +27,18 @@
 	<div class="mb-12 text-center">
 		<h2 class="section-heading">So bekommst du das Wimmelbuch</h2>
 		<p class="section-subheading">Online bestellen oder direkt in Klosterneuburg abholen</p>
+		<div class="flex flex-col sm:flex-row justify-center gap-6 mt-8 mx-auto max-w-xs">
+			<img
+				src="/images/Wimmelbuch_Deckblatt.jpg"
+				alt="Wimmelbuch Klosterneuburg – Deckblatt"
+				class="flex-1 rounded-bento shadow-xl"
+			/>
+			<img
+				src="/images/Wimmelbuch_Rückseite.jpg"
+				alt="Wimmelbuch Klosterneuburg – Rückseite"
+				class="flex-1 rounded-bento shadow-xl"
+			/>
+		</div>
 	</div>
 
 	<!-- Bento grid -->
@@ -99,13 +112,23 @@
 				</div>
 			</div>
 
-			<ul class="space-y-3">
+			<ul class="space-y-3 overflow-y-auto max-h-48 pr-1">
 				{#each pickupLocations as loc}
 					<li class="flex items-center gap-3 rounded-xl bg-base-100 p-3 text-sm transition-colors hover:bg-base-300">
-						<span class="text-xl shrink-0">{loc.icon}</span>
-						<div>
+						<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary text-[10px] font-bold">
+							{initials(loc.name)}
+						</span>
+						<div class="min-w-0">
 							<div class="font-semibold">{loc.name}</div>
-							<div class="text-base-content/50 text-xs">{loc.detail}</div>
+							{#if loc.address}
+								<div class="text-base-content/50 text-xs">{loc.address}</div>
+							{/if}
+							{#if loc.email}
+								<a href="mailto:{loc.email}" class="text-primary text-xs hover:underline truncate block">{loc.email}</a>
+							{/if}
+							{#if loc.phone}
+								<a href="tel:{loc.phone}" class="text-base-content/50 text-xs hover:underline block">{loc.phone}</a>
+							{/if}
 						</div>
 					</li>
 				{/each}
@@ -129,19 +152,26 @@
 				</div>
 			</div>
 
+			<p class="text-base-content/70 text-sm leading-relaxed mb-6">
+				Besuche mich persönlich bei meinen Pop-Up-Ständen. Dort kannst du nicht nur das Buch kaufen, sondern auch einen Blick auf Originalzeichnungen werfen oder mit mir plaudern!
+			</p>
+
 			{#if popupStands.length === 0}
 				<div class="rounded-xl bg-base-100 p-6 text-center text-base-content/50 text-sm">
 					<div class="text-3xl mb-2">📅</div>
 					<p>Aktuelle Termine folgen in Kürze.<br />Schau regelmäßig vorbei oder kontaktiere Ines direkt.</p>
 				</div>
 			{:else}
-				<div class="flex gap-4 overflow-x-auto pb-2 snap-x">
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 					{#each popupStands as stand}
-						<div class="snap-start shrink-0 w-64 rounded-xl bg-base-100 p-4 border border-base-300">
-							<div class="badge badge-secondary badge-sm mb-2">{formatDate(stand.date)}</div>
-							<div class="font-semibold text-sm">{stand.location}</div>
-							{#if stand.description}
-								<p class="text-xs text-base-content/60 mt-1">{stand.description}</p>
+						<div class="rounded-xl bg-base-100 p-4 border border-base-300 flex flex-col gap-1">
+							<div class="badge badge-secondary badge-sm self-start">{formatDate(stand.date)}</div>
+							<div class="font-semibold text-sm mt-1">{stand.name}</div>
+							{#if stand.address}
+								<div class="text-xs text-base-content/50">{stand.address}</div>
+							{/if}
+							{#if stand.note}
+								<p class="text-xs text-base-content/70 mt-1 leading-relaxed">{@html stand.note}</p>
 							{/if}
 						</div>
 					{/each}

@@ -1,6 +1,7 @@
 export interface PopupStand {
 	id: number;
-	location: string;
+	name: string;
 	date: string; // ISO date string "YYYY-MM-DD"
-	description: string | null;
+	address: string | null;
+	note: string | null;
 }

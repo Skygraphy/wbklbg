@@ -56,9 +56,7 @@
 	<!-- Light cream overlay with subtle spotlight -->
 	<div
 		class="absolute inset-0 transition-[background] duration-150"
-		style="background: {hasPointer
-			? `radial-gradient(600px circle at ${x}% ${y}%, rgba(61,43,31,0.12) 0%, rgba(61,43,31,0.35) 70%)`
-			: 'rgba(61,43,31,0.30)'};"
+		style="background: radial-gradient(600px circle at {x}% {y}%, rgba(61,43,31,{hasPointer ? 0.55 : 0.80}) 0%, rgba(61,43,31,0.80) 70%);"
 	></div>
 
 	<!-- Main content -->
@@ -68,8 +66,8 @@
 
 	<!-- Scroll indicator – anchored to hero bottom, outside content wrapper -->
 	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce pointer-events-none">
-		<span class="text-xs text-black/35">Mehr entdecken</span>
-		<svg class="h-5 w-5 text-black/35" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+		<span class="text-xs text-white/60">Mehr entdecken</span>
+		<svg class="h-5 w-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 		</svg>
 	</div>

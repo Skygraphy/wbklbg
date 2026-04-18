@@ -2,6 +2,7 @@ import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { Resend } from 'resend';
 import { RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_TO_EMAIL } from '$env/static/private';
+import { saveContactSubmission } from '$lib/server/db';
 
 const resend = new Resend(RESEND_API_KEY);
 
@@ -19,28 +20,38 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	// Honeypot check
 	if (website) {
-		return json({ success: true }); // silently discard
+		return json({ success: true });
 	}
 
 	// Validation
-	if (!name?.trim() || !email?.trim() || !qty) {
+	if (!name?.trim() || !email?.trim()) {
 		throw error(400, { message: 'Bitte fülle alle Pflichtfelder aus.' });
 	}
 	if (!emailRegex.test(email)) {
 		throw error(400, { message: 'Bitte gib eine gültige E-Mail-Adresse ein.' });
 	}
-	if (!['1', '3'].includes(qty)) {
+	const qtyNum = qty ? parseInt(qty) : null;
+	if (qty && (isNaN(qtyNum!) || qtyNum! < 1 || qtyNum! > 10)) {
 		throw error(400, { message: 'Ungültige Anzahl.' });
 	}
 
-	const priceMap: Record<string, string> = { '1': '€ 39', '3': '€ 109' };
-	const price = priceMap[qty];
+	// Save to DB (non-blocking – don't fail the request if this errors)
+	saveContactSubmission({
+		name: name.trim(),
+		email: email.trim(),
+		qty: qty || null,
+		message: message?.trim() || null
+	}).catch((e) => console.error('DB save error:', e));
+
+	const qtyLine = qty
+		? `${qty} Exemplar${qty === '1' ? '' : 'e'}`
+		: 'Keine Angabe';
 
 	const { error: sendError } = await resend.emails.send({
 		from: RESEND_FROM_EMAIL,
 		to: RESEND_TO_EMAIL,
 		replyTo: email,
-		subject: `📚 Neue Bestellung – ${qty}x Wimmelbuch von ${name}`,
+		subject: `📚 Neue Bestellung – ${qty ? qty + 'x ' : ''}Wimmelbuch von ${name}`,
 		html: `
 			<div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 24px;">
 				<h1 style="color: #3D2B1F; font-size: 24px; margin-bottom: 8px;">
@@ -61,7 +72,7 @@ export const POST: RequestHandler = async ({ request }) => {
 					</tr>
 					<tr>
 						<td style="padding: 8px 0; color: #6B4C38; font-weight: bold;">Anzahl:</td>
-						<td style="padding: 8px 0; color: #3D2B1F;">${qty} Exemplar${qty === '1' ? '' : 'e'} – ${price}</td>
+						<td style="padding: 8px 0; color: #3D2B1F;">${qtyLine}</td>
 					</tr>
 					${
 						message
