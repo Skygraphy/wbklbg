@@ -112,14 +112,23 @@
 				<h3 class="font-display text-xl font-bold">Bestellung & Anfragen</h3>
 
 				{#if status === 'success'}
-					<div class="alert alert-success rounded-xl">
-						<svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-						</svg>
-						<div>
-							<h4 class="font-semibold">Vielen Dank für deine Bestellung!</h4>
-							<p class="text-sm">Ines wird sich so schnell wie möglich bei dir melden.</p>
+					<div class="flex flex-col gap-4">
+						<div class="alert alert-success rounded-xl">
+							<svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+							<div>
+								<h4 class="font-semibold">Vielen Dank für deine Bestellung!</h4>
+								<p class="text-sm">Ines wird sich so schnell wie möglich bei dir melden.</p>
+							</div>
 						</div>
+						<button
+							type="button"
+							class="text-sm text-primary hover:underline self-start"
+							onclick={() => (status = 'idle')}
+						>
+							Weitere Anfrage stellen
+						</button>
 					</div>
 				{:else}
 					<form onsubmit={handleSubmit} class="flex flex-col gap-4" novalidate>

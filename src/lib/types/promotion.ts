@@ -11,4 +11,5 @@ export interface Promotion {
 	price2_amt: number | null;
 	price3_qty: string | null;
 	price3_amt: number | null;
+	note: string | null;
 }

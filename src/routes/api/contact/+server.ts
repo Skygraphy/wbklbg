@@ -1,7 +1,7 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { Resend } from 'resend';
-import { RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_TO_EMAIL } from '$env/static/private';
+import { RESEND_API_KEY, CONTACT_EMAIL } from '$env/static/private';
 import { saveContactSubmission } from '$lib/server/db';
 
 const resend = new Resend(RESEND_API_KEY);
@@ -48,8 +48,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		: 'Keine Angabe';
 
 	const { error: sendError } = await resend.emails.send({
-		from: RESEND_FROM_EMAIL,
-		to: RESEND_TO_EMAIL,
+		from: 'Wimmelbuch Klosterneuburg <kontakt@wimmelbuch-klosterneuburg.at>',
+		to: CONTACT_EMAIL,
 		replyTo: email,
 		subject: `📚 Neue Bestellung – ${qty ? qty + 'x ' : ''}Wimmelbuch von ${name}`,
 		html: `

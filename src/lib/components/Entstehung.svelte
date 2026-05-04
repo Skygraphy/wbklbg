@@ -60,7 +60,7 @@
 		{
 			title: 'Ein Traum wird wahr',
 			description:
-				'Nach über 1,5 Jahren halte ich mein erstes eigenes Wimmelbuch in den Händen. Es gab Momente, in denen ich fast aufgeben wollte – aber ich wusste: <strong class="text-primary">Diese Arbeit lohnt sich.</strong>',
+				'Nach über 2 Jahren halte ich mein erstes eigenes Wimmelbuch in den Händen. Es gab Momente, in denen ich fast aufgeben wollte – aber ich wusste: <strong class="text-primary">Diese Arbeit lohnt sich.</strong>',
 			image: '/images/making_off/09_ein_traum_wird_wahr.jpg',
 			objectPosition: 'center bottom'
 		}
@@ -69,11 +69,11 @@
 
 <SectionWrapper bg="base-200">
 	<div class="mb-12 text-center">
-		<h2 class="section-heading">Wie ein Wimmelbuch entsteht</h2>
+		<h2 class="section-heading">Wie ein Wimmelbuch von mir entsteht</h2>
 		<p class="section-subheading">Vom ersten Foto bis zum fertigen Buch</p>
 		<p class="mt-4 max-w-2xl mx-auto text-base-content/60 text-sm leading-relaxed">
-			Hinter diesem Wimmelbuch steckt mehr als nur Kreativität – es steckt Leidenschaft,
-			Geduld und monatelange Handarbeit. Wusstest du, dass ein einziges Bild fast
+			Hinter diesem Wimmelbuch steckt mehr als nur Kreativität – es sind Leidenschaft,
+			Geduld und monatelange Handarbeit. Wusstest du, dass ein einziges Bild über
 			einen Monat Arbeit bedeutet?
 		</p>
 	</div>

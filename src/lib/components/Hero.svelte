@@ -9,7 +9,7 @@
 		<!-- Tag line -->
 		<div class="flex flex-wrap items-center justify-center gap-2">
 			<span class="rounded-full bg-primary/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white shadow">
-				Neu 2025
+				Neu 2026
 			</span>
 			<span class="text-white/70 text-sm">Handgezeichnet · Klosterneuburg</span>
 		</div>
@@ -26,7 +26,7 @@
 				wimmelt
 			</span>
 			<span class="font-amatic font-bold block tracking-wide mt-1 text-4xl md:text-5xl lg:text-6xl text-white/90 drop-shadow">
-				eine Reise rund ums Jahr.
+				eine Reise rund ums Jahr
 			</span>
 		</h1>
 
@@ -34,7 +34,7 @@
 		<p class="max-w-xl text-base text-white/75 md:text-lg drop-shadow">
 			12 Doppelseiten &middot; 12 Monate &middot; unzählige Entdeckungen
 			<br />
-			Handgezeichnet mit Liebe von Ines Wohlmuth.
+			Handgezeichnet mit Liebe von Ines Wohlmuth
 		</p>
 
 		<!-- CTA buttons -->

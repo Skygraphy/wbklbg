@@ -26,6 +26,18 @@
 		if (isNaN(n) || n < 1) return null;
 		return Math.round(n * STANDARD_PRICE - amt);
 	}
+
+	function isUpcoming(validFrom: string): boolean {
+		return validFrom > new Date().toISOString().slice(0, 10);
+	}
+
+	function parseIcon(icon: string): { name: string; color: string; isFA: boolean } {
+		if (icon.includes('|')) {
+			const [name, color] = icon.split('|');
+			return { name, color: color ?? '#e74c3c', isFA: true };
+		}
+		return { name: icon, color: '', isFA: false };
+	}
 </script>
 
 <SectionWrapper id="preise" bg="base-200">
@@ -41,7 +53,7 @@
 			<div class="flex flex-col items-center sm:items-start text-center sm:text-left flex-1">
 				<div class="text-xs font-bold tracking-widest uppercase opacity-60 mb-1">Standardpreis</div>
 				<div class="font-bold text-7xl leading-none">{STANDARD_PRICE} €</div>
-				<div class="text-sm opacity-70 mt-2">pro Exemplar · inkl. persönlicher Widmung</div>
+				<div class="text-sm opacity-70 mt-2">pro Exemplar</div>
 			</div>
 			<ul class="flex-1 space-y-2 text-sm opacity-85">
 				<li class="flex items-center gap-2">
@@ -62,37 +74,46 @@
 			</a>
 		</div>
 
-		<!-- Aktive Aktionen – dezent -->
-		{#if promotions.length > 0}
-		<div class="flex flex-col gap-4">
-			{#each promotions as promo}
-			{@const options = priceOptions(promo)}
-			<div class="rounded-bento border border-base-300 bg-base-100 p-5">
-				<div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-					<div class="flex items-center gap-2">
-						<span class="text-2xl leading-none">{promo.icon}</span>
-						<div>
-							<span class="text-[10px] font-bold uppercase tracking-widest text-base-content/40">Sonderaktion · </span>
+		<!-- Aktive Aktion – dezent -->
+		{#if promotions[0]}
+		{@const promo = promotions[0]}
+		{@const options = priceOptions(promo)}
+		{@const ic = parseIcon(promo.icon)}
+		<div class="rounded-bento border border-base-300 bg-base-100 p-5 mb-8">
+			<div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+				<div class="flex items-center gap-2">
+					{#if ic.isFA}
+						<i class="fa-solid fa-{ic.name} text-2xl leading-none" style="color: {ic.color}"></i>
+					{:else}
+						<span class="text-2xl leading-none">{ic.name}</span>
+					{/if}
+					<div>
+						<span class="text-[10px] font-bold uppercase tracking-widest text-base-content/40">Sonderaktion · </span>
+						{#if isUpcoming(promo.valid_from)}
+							<span class="text-[10px] font-semibold text-base-content/40">{formatDate(promo.valid_from)} bis {formatDate(promo.valid_to)}</span>
+						{:else}
 							<span class="text-[10px] font-semibold text-base-content/40">bis {formatDate(promo.valid_to)}</span>
-							<div class="text-sm font-bold text-base-content">{promo.name}</div>
-						</div>
-					</div>
-					<a href="#kontakt" class="btn btn-sm btn-outline btn-primary">Anfragen</a>
-				</div>
-				<div class="flex flex-wrap gap-3">
-					{#each options as opt}
-					{@const saved = savings(opt.amt, opt.qty)}
-					<div class="flex items-baseline gap-2 bg-base-200 rounded-xl px-4 py-2">
-						<span class="text-xs text-base-content/50 font-medium">{opt.qty}</span>
-						<span class="text-lg font-bold text-base-content">{opt.amt % 1 === 0 ? opt.amt.toFixed(0) : opt.amt.toFixed(2)} €</span>
-						{#if saved && saved > 0}
-							<span class="text-[10px] text-secondary font-semibold">–{saved} €</span>
 						{/if}
+						<div class="text-sm font-bold text-base-content">{promo.name}</div>
 					</div>
-					{/each}
 				</div>
+				<a href="#kontakt" class="btn btn-sm btn-outline btn-primary">Anfragen</a>
 			</div>
-			{/each}
+			<div class="flex flex-wrap gap-3">
+				{#each options as opt}
+				{@const saved = savings(opt.amt, opt.qty)}
+				<div class="flex items-baseline gap-2 bg-base-200 rounded-xl px-4 py-2">
+					<span class="text-xs text-base-content/50 font-medium">{opt.qty}</span>
+					<span class="text-lg font-bold text-base-content">{opt.amt % 1 === 0 ? opt.amt.toFixed(0) : opt.amt.toFixed(2)} €</span>
+					{#if saved && saved > 0}
+						<span class="text-[10px] text-secondary font-semibold">–{saved} €</span>
+					{/if}
+				</div>
+				{/each}
+			</div>
+			{#if promo.note}
+				<p class="text-xs text-base-content/50 mt-3">{promo.note}</p>
+			{/if}
 		</div>
 		{/if}
 

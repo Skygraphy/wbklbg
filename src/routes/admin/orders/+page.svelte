@@ -17,9 +17,9 @@
 	</div>
 
 	<div class="card bg-base-100 overflow-hidden">
-		<table class="table table-sm">
+		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap">
 			<thead>
-				<tr class="bg-base-200 text-base-content/60 text-xs uppercase tracking-wide">
+				<tr class="border-b border-base-200 text-base-content/60 text-xs uppercase tracking-wide">
 					<th>Datum</th>
 					<th>Name</th>
 					<th>E-Mail</th>

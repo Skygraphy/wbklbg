@@ -6,12 +6,12 @@
 	const career = [
 		{
 			label: 'Kindheit & Schulzeit',
-			text: 'Volksschule Weidling, Klosterneuburger Gymnasium (4 Jahre), Tourismusschule MODUL',
+			text: 'Volksschule Weidling, Klosterneuburger Gymnasium, Tourismusschule MODUL',
 			active: true
 		},
 		{
 			label: 'Kreative Ausbildung',
-			text: 'Graphische Wien – Kolleg für Druck- und Medientechnik',
+			text: 'Die Graphische Wien – Kolleg für Druck- und Medientechnik',
 			active: true
 		},
 		{
@@ -25,7 +25,7 @@
 			active: true
 		},
 		{
-			label: 'Veröffentlichung 2025',
+			label: 'Veröffentlichung 2026',
 			text: 'Erste Ausgabe des Wimmelbuch Klosterneuburg erscheint',
 			active: false
 		}
@@ -38,69 +38,40 @@
 		<p class="section-subheading">Ein Mensch, eine Stadt, eine Geschichte</p>
 	</div>
 
-	<!-- Bio section: photo + text -->
-	<div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
-		<!-- Portrait -->
+	<!-- Bio section: photos + text -->
+	<div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+		<!-- Left: Familienfoto -->
 		<div class="flex justify-center">
-			<div class="relative">
-				<div class="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-bento shadow-lg">
-					{#if !portraitFailed}
-						<img
-							src="/images/ines-portrait.jpg"
-							alt="Ines Wohlmuth, Autorin des Wimmelbuch Klosterneuburg"
-							class="h-full w-full object-cover"
-							onerror={() => (portraitFailed = true)}
-						/>
-					{:else}
-						<div
-							class="flex h-full min-h-96 w-full flex-col items-center justify-center bg-base-200 text-base-content/30"
-							aria-hidden="true"
-						>
-							<svg class="h-16 w-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-							</svg>
-							<span class="text-sm">Ines Wohlmuth</span>
-						</div>
-					{/if}
-				</div>
-				<!-- Decorative badge -->
-				<div class="absolute -bottom-4 -right-4 rounded-bento bg-primary p-3 shadow-lg text-primary-content text-center">
-					<div class="font-display text-2xl font-bold">2</div>
-					<div class="text-xs font-semibold">Jahre<br/>Arbeit</div>
-				</div>
-			</div>
+			<img
+				src="/images/Familienfoto.jpg"
+				alt="Familie Wohlmuth"
+				class="w-3/4 aspect-[3/4] object-cover rounded-bento shadow-lg"
+			/>
 		</div>
 
 		<!-- Biography text -->
 		<div class="flex flex-col gap-5">
 			<div>
 				<h3 class="font-display text-3xl font-bold text-wim-brown">Ines Wohlmuth</h3>
-				<p class="text-primary font-semibold mt-1">Autorin · Lehrerin · Klosterneuburgerin</p>
+				<p class="text-primary font-semibold mt-1">Autorin und Illustratorin · Lehrerin · Klosterneuburgerin</p>
 			</div>
 
 			<div class="space-y-4 text-base-content/75 leading-relaxed text-sm">
 				<p>
-					Hinter jedem Bild, jeder Szene und jedem liebevollen Detail steckt ein Mensch mit
-					einer großen Portion Kreativität, Geduld – und einer tiefen Verbundenheit zu Klosterneuburg.
+					Hinter jedem Bild, jeder Szene und jedem liebevollen Detail steckt ein Mensch mit einer großen
+					Portion Kreativität, Geduld – und einer tiefen Verbundenheit zu Klosterneuburg.
 				</p>
 				<p>
-					Geboren am 7. Oktober 1993 hier in Klosterneuburg, aufgewachsen im Ortsteil Weidling –
-					zwischen Wäldern, Wiesen und einem Leben voller Natur. Schon als Kind war ich am
-					glücklichsten, wenn ich draußen unterwegs war oder drinnen stundenlang zeichnen,
-					basteln und meiner Fantasie freien Lauf lassen konnte.
+					Geboren hier in Klosterneuburg, aufgewachsen im Ortsteil Weidling – zwischen Wäldern, Wiesen
+					und einem Leben voller Natur. Schon als Kind war ich am glücklichsten, wenn ich draußen
+					unterwegs war oder drinnen stundenlang zeichnen, basteln und meiner Fantasie freien Lauf
+					lassen konnte.
 				</p>
 				<p>
-					Kein Wunder also, dass ich mit 7 Jahren zu den Pfadfindern Weidling gegangen bin –
-					ein Schritt, der mein Leben bis heute prägt. Ich bin noch immer aktives Mitglied,
-					habe dort nicht nur viele Freundschaften fürs Leben geschlossen, sondern auch meinen
-					Mann kennengelernt. Wir haben im April 2021 geheiratet, 2022 kam unsere Tochter
-					Antonia zur Welt, 2024 folgte unser Sohn Ferdinand.
-				</p>
-				<p>
-					Und mitten im Familienalltag, zwischen Mittagsschlaf und Gute-Nacht-Geschichte,
-					kam sie – die Idee zum Klosterneuburger Wimmelbuch. Ich nutzte jede freie Minute
-					zum Zeichnen – abends, wenn die Kinder schliefen, oder wann immer sich eine
-					kleine Pause ergab.
+					Mittlerweile bin ich Mama von bald 3 kleinen Kindern und mitten im Familienalltag, zwischen
+					Mittagsschlaf und Gute-Nacht-Geschichte, kam sie – die Idee zum Klosterneuburger
+					Wimmelbuch. Ich nutzte jede freie Minute zum Zeichnen – abends, wenn die Kinder schliefen,
+					oder wann immer sich eine kleine Pause ergab.
 				</p>
 			</div>
 		</div>
