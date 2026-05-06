@@ -5,7 +5,7 @@ import { getSetting, updateSetting } from '$lib/server/db';
 export const load: PageServerLoad = async () => {
 	const [standardPrice, orderPrefillMessage, promotionMessage, promotionInquiryMessage,
 		impressumName, impressumAddress, impressumEmail, impressumBusiness,
-		contactEmail, contactIsbn] = await Promise.all([
+		contactEmail, contactIsbn, maintenanceMode] = await Promise.all([
 		getSetting('standard_price'),
 		getSetting('order_prefill_message'),
 		getSetting('promotion_message'),
@@ -16,6 +16,7 @@ export const load: PageServerLoad = async () => {
 		getSetting('impressum_business'),
 		getSetting('contact_email'),
 		getSetting('contact_isbn'),
+		getSetting('maintenance_mode'),
 	]);
 	return {
 		standardPrice: parseFloat(standardPrice ?? '39'),
@@ -28,11 +29,19 @@ export const load: PageServerLoad = async () => {
 		impressumBusiness: impressumBusiness ?? '',
 		contactEmail: contactEmail ?? 'kontakt@wimmelbuch-klosterneuburg.at',
 		contactIsbn: contactIsbn ?? '',
+		maintenanceMode: maintenanceMode === 'true',
 	};
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	toggleMaintenance: async ({ request }) => {
+		const d = await request.formData();
+		const value = d.get('maintenance_mode') === 'true' ? 'true' : 'false';
+		await updateSetting('maintenance_mode', value);
+		return { success: true };
+	},
+
+	save: async ({ request }) => {
 		const d = await request.formData();
 
 		const raw = (d.get('standard_price') as string)?.trim();

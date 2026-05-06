@@ -14,12 +14,55 @@
 	let impressumBusiness = $state(data.impressumBusiness);
 	let contactEmail = $state(data.contactEmail);
 	let contactIsbn = $state(data.contactIsbn);
+	let maintenanceMode = $state(data.maintenanceMode);
 </script>
 
 <div class="max-w-2xl">
 	<div class="mb-8">
 		<h1 class="text-2xl font-bold">Einstellungen</h1>
 		<p class="text-base-content/50 text-sm mt-0.5">Allgemeine Website-Einstellungen</p>
+	</div>
+
+	<!-- Wartungsmodus -->
+	<div class="card bg-base-100 mb-6">
+		<div class="card-body flex-row items-center justify-between gap-4 py-4">
+			<div>
+				<h2 class="font-semibold text-sm">Wartungsmodus</h2>
+				<p class="text-xs text-base-content/50 mt-0.5">
+					Besucher werden auf die Wartungsseite weitergeleitet. Der Adminbereich bleibt zugänglich.
+				</p>
+			</div>
+			<form
+				method="POST"
+				action="?/toggleMaintenance"
+				use:enhance={() => async ({ update }) => { await update({ reset: false }); }}
+			>
+				<input type="hidden" name="maintenance_mode" value="" />
+				<input
+					type="checkbox"
+					class="toggle toggle-error"
+					checked={maintenanceMode}
+					onchange={(e) => {
+						maintenanceMode = e.currentTarget.checked;
+						const form = e.currentTarget.form!;
+						(form.elements.namedItem('maintenance_mode') as HTMLInputElement).value =
+							e.currentTarget.checked ? 'true' : 'false';
+						form.requestSubmit();
+					}}
+				/>
+			</form>
+		</div>
+		{#if maintenanceMode}
+			<div class="px-6 pb-4">
+				<div class="flex items-center gap-2 rounded-lg bg-error/10 border border-error/20 px-3 py-2 text-xs text-error font-medium">
+					<svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+					</svg>
+					Wartungsmodus ist aktiv – Besucher sehen die Wartungsseite.
+				</div>
+			</div>
+		{/if}
 	</div>
 
 	{#if form?.error}
@@ -31,7 +74,7 @@
 
 	<div class="card bg-base-100">
 		<div class="card-body gap-8">
-			<form method="POST" use:enhance={() => async ({ update }) => { await update({ reset: false }); }} class="flex flex-col gap-8">
+			<form method="POST" action="?/save" use:enhance={() => async ({ update }) => { await update({ reset: false }); }} class="flex flex-col gap-8">
 
 				<!-- Preis -->
 				<div class="flex flex-col gap-1.5">

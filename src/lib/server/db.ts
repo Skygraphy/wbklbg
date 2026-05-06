@@ -249,6 +249,7 @@ export type SettingKey =
 	| 'promotion_inquiry_message'
 	| 'contact_email'
 	| 'contact_isbn'
+	| 'maintenance_mode'
 	| 'impressum_name'
 	| 'impressum_address'
 	| 'impressum_email'
