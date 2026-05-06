@@ -53,7 +53,7 @@
 	<div class="mt-16">
 		<h3 class="section-heading text-center mb-2">12 Monate – 12 besondere Momente</h3>
 		<p class="section-subheading text-center mb-8">Das ganze Jahr über gibt es in Klosterneuburg etwas zu entdecken</p>
-		<div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
+		<div class="grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
 			{#each [
 				{ name: 'Wintertag',          img: '/images/thumbs/01.jpg', color: 'rgba(220,235,255,0.90)' },
 				{ name: 'Faschingsumzug',     img: '/images/thumbs/02.jpg', color: 'rgba(253,220,100,0.92)' },
@@ -77,7 +77,7 @@
 					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 					<div class="relative flex aspect-square items-end justify-center p-2">
 						<span
-							class="text-xs font-bold drop-shadow-md truncate w-full text-center"
+							class="text-[9px] sm:text-xs font-bold drop-shadow-md truncate w-full text-center leading-tight"
 							style="color: {event.color}"
 						>{event.name}</span>
 					</div>

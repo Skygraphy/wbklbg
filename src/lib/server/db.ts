@@ -64,11 +64,11 @@ export async function swapSortOrder(table: 'popup_stands' | 'promotions' | 'pick
 	// so we use explicit per-table queries.
 	let rows: { id: number; sort_order: number | null }[];
 	if (table === 'popup_stands') {
-		rows = await sql`SELECT id, sort_order FROM popup_stands WHERE id IN (${idA}, ${idB})`;
+		rows = await sql`SELECT id, sort_order FROM popup_stands WHERE id IN (${idA}, ${idB})` as typeof rows;
 	} else if (table === 'promotions') {
-		rows = await sql`SELECT id, sort_order FROM promotions WHERE id IN (${idA}, ${idB})`;
+		rows = await sql`SELECT id, sort_order FROM promotions WHERE id IN (${idA}, ${idB})` as typeof rows;
 	} else {
-		rows = await sql`SELECT id, sort_order FROM pickup_locations WHERE id IN (${idA}, ${idB})`;
+		rows = await sql`SELECT id, sort_order FROM pickup_locations WHERE id IN (${idA}, ${idB})` as typeof rows;
 	}
 	if (rows.length !== 2) return;
 	const [a, b] = rows;
@@ -217,20 +217,48 @@ export async function deletePickupLocation(id: number): Promise<void> {
 export async function saveContactSubmission(data: {
 	name: string;
 	email: string;
+	subject: string | null;
 	qty: string | null;
 	message: string | null;
 }): Promise<void> {
 	await sql`
-		INSERT INTO contact_submissions (name, email, qty, message)
-		VALUES (${data.name}, ${data.email}, ${data.qty ?? null}, ${data.message ?? null})
+		INSERT INTO contact_submissions (name, email, subject, qty, message)
+		VALUES (${data.name}, ${data.email}, ${data.subject}, ${data.qty}, ${data.message})
 	`;
 }
 
 export async function getContactSubmissions(): Promise<ContactSubmission[]> {
 	const rows = await sql`
-		SELECT id, name, email, qty, message, submitted_at::text
+		SELECT id, name, email, subject, qty, message, submitted_at::text
 		FROM contact_submissions
 		ORDER BY submitted_at DESC
 	`;
 	return rows as ContactSubmission[];
+}
+
+export async function deleteContactSubmission(id: number): Promise<void> {
+	await sql`DELETE FROM contact_submissions WHERE id = ${id}`;
+}
+
+// ─── Settings ────────────────────────────────────────────────────────────────
+
+export type SettingKey =
+	| 'standard_price'
+	| 'order_prefill_message'
+	| 'promotion_message'
+	| 'promotion_inquiry_message'
+	| 'contact_email'
+	| 'contact_isbn'
+	| 'impressum_name'
+	| 'impressum_address'
+	| 'impressum_email'
+	| 'impressum_business';
+
+export async function getSetting(key: SettingKey): Promise<string | null> {
+	const [row] = await sql`SELECT value FROM settings WHERE key = ${key}`;
+	return row?.value ?? null;
+}
+
+export async function updateSetting(key: SettingKey, value: string): Promise<void> {
+	await sql`INSERT INTO settings (key, value) VALUES (${key}, ${value}) ON CONFLICT (key) DO UPDATE SET value = ${value}`;
 }

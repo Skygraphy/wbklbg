@@ -1,5 +1,12 @@
 <script lang="ts">
 	import SpotlightCursor from '$lib/ui/SpotlightCursor.svelte';
+	import { setOrderPrefill } from '$lib/stores/contact-prefill';
+
+	interface Props {
+		standardPrice: number;
+		orderPrefillMessage: string;
+	}
+	const { standardPrice, orderPrefillMessage }: Props = $props();
 </script>
 
 <SpotlightCursor>
@@ -39,7 +46,7 @@
 
 		<!-- CTA buttons -->
 		<div class="flex flex-wrap justify-center gap-4">
-			<a href="#bezug" class="btn btn-primary btn-lg shadow-md hover:shadow-lg transition-shadow">
+			<a href="#kontakt" class="btn btn-primary btn-lg shadow-md hover:shadow-lg transition-shadow" onclick={() => setOrderPrefill(standardPrice, orderPrefillMessage)}>
 				Jetzt bestellen
 			</a>
 			<a

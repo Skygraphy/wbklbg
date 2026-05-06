@@ -3,12 +3,15 @@
 	import BentoCard from '$lib/ui/BentoCard.svelte';
 	import type { PopupStand } from '$lib/types/popup-stand';
 	import type { PickupLocation } from '$lib/types/pickup-location';
+	import { setOrderPrefill } from '$lib/stores/contact-prefill';
 
 	interface Props {
 		popupStands: PopupStand[];
 		pickupLocations: PickupLocation[];
+		standardPrice: number;
+		orderPrefillMessage: string;
 	}
-	const { popupStands, pickupLocations }: Props = $props();
+	const { popupStands, pickupLocations, standardPrice, orderPrefillMessage }: Props = $props();
 
 	function parseIcon(icon: string | null): { name: string; color: string } {
 		if (icon && icon.includes('|')) {
@@ -68,7 +71,7 @@
 	<!-- Bento grid -->
 	<div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
 		<!-- Online order tile: col-span-12 -->
-		<BentoCard class="lg:col-span-12 flex flex-col lg:flex-row lg:items-center gap-6 bg-primary text-primary-content">
+		<BentoCard class="lg:col-span-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-primary text-primary-content">
 			<!-- Left: icon + heading + description + badges -->
 			<div class="flex flex-col gap-4 flex-1">
 				<div class="flex items-center gap-3">
@@ -115,6 +118,7 @@
 			<a
 				href="#kontakt"
 				class="btn bg-primary-content text-primary hover:bg-wim-cream shrink-0"
+				onclick={() => setOrderPrefill(standardPrice, orderPrefillMessage)}
 			>
 				Zum Bestellformular
 			</a>

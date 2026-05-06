@@ -3,10 +3,10 @@
 	const { data }: { data: PageData } = $props();
 
 	const stats = [
-		{ label: 'Popup-Stände',  value: data.counts.stands,     href: '/admin/popup-stands', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
-		{ label: 'Aktionen',      value: `${data.counts.promotionsActive} / ${data.counts.promotions}`, href: '/admin/promotions', icon: 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', sub: 'aktiv / gesamt' },
-		{ label: 'Abholstellen',  value: data.counts.locations,  href: '/admin/locations',    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' },
-		{ label: 'Bestellungen',  value: data.counts.orders,     href: '/admin/orders',       icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+		{ label: 'Popup-Stände',  value: `${data.counts.standsUpcoming} / ${data.counts.stands}`,       href: '/admin/popup-stands', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',                                            sub: 'bevorstehend / gesamt' },
+		{ label: 'Aktionen',      value: `${data.counts.promotionsActive} / ${data.counts.promotions}`, href: '/admin/promotions',   icon: 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', sub: 'aktiv / gesamt' },
+		{ label: 'Abholstellen',  value: `${data.counts.locationsActive} / ${data.counts.locations}`,   href: '/admin/locations',    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z',                                               sub: 'aktiv / gesamt' },
+		{ label: 'Bestellungen',  value: data.counts.orders,                                            href: '/admin/orders',       icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
 	];
 
 	function formatDate(s: string) {
@@ -50,7 +50,7 @@
 					<tbody>
 						{#each data.recentOrders as order}
 							<tr class="hover">
-								<td class="text-xs text-base-content/40 font-mono">{formatDate(order.submitted_at)}</td>
+								<td class="text-xs text-base-content/40">{formatDate(order.submitted_at)}</td>
 								<td class="font-medium">{order.name}</td>
 								<td><a href="mailto:{order.email}" class="text-primary text-sm hover:underline">{order.email}</a></td>
 								<td class="text-center text-sm">{order.qty ?? '–'} Stk.</td>

@@ -16,13 +16,13 @@
 </svelte:head>
 
 <main>
-	<Hero />
-	<Bezugsmoeglichkeiten popupStands={data.popupStands} pickupLocations={data.pickupLocations} />
-	<Preise promotions={data.promotions} />
+	<Hero standardPrice={data.standardPrice} orderPrefillMessage={data.orderPrefillMessage} />
+	<Bezugsmoeglichkeiten popupStands={data.popupStands} pickupLocations={data.pickupLocations} standardPrice={data.standardPrice} orderPrefillMessage={data.orderPrefillMessage} />
+	<Preise promotions={data.promotions} standardPrice={data.standardPrice} orderPrefillMessage={data.orderPrefillMessage} promotionMessage={data.promotionMessage} promotionInquiryMessage={data.promotionInquiryMessage} />
 	<Besonderheiten />
 	<Entstehung />
 	<UeberInes />
-	<Kontakt />
+	<Kontakt contactEmail={data.contactEmail} contactIsbn={data.contactIsbn} />
 </main>
 
 <!-- Footer -->
@@ -32,8 +32,9 @@
 		© {new Date().getFullYear()} Ines Wohlmuth · wimmelbuch-klosterneuburg.at
 	</p>
 	<div class="flex justify-center gap-6 text-sm text-wim-cream/50">
-		<a href="mailto:kontakt@wimmelbuch-klosterneuburg.at" class="hover:text-wim-cream transition-colors">
-			kontakt@wimmelbuch-klosterneuburg.at
+		<a href="mailto:{data.contactEmail}" class="hover:text-wim-cream transition-colors">
+			{data.contactEmail}
 		</a>
+		<a href="/impressum" class="hover:text-wim-cream transition-colors">Impressum</a>
 	</div>
 </footer>

@@ -276,17 +276,18 @@
 										min={editValidFrom || promo.valid_from} />
 									<div class="col-span-2 grid grid-cols-3 gap-2">
 										{#each [1,2,3] as n}
+											{@const p = promo as unknown as Record<string, unknown>}
 											<div class="flex gap-1">
 												<select name="price{n}_qty" class="select select-bordered select-sm w-1/2">
 													<option value="">–</option>
-													<option value="1 Buch" selected={promo[`price${n}_qty`] === '1 Buch'}>1 Buch</option>
-													<option value="3 Bücher" selected={promo[`price${n}_qty`] === '3 Bücher'}>3 Bücher</option>
-													<option value="5 Bücher" selected={promo[`price${n}_qty`] === '5 Bücher'}>5 Bücher</option>
-													<option value="10 Bücher" selected={promo[`price${n}_qty`] === '10 Bücher'}>10 Bücher</option>
+													<option value="1 Buch" selected={p[`price${n}_qty`] === '1 Buch'}>1 Buch</option>
+													<option value="3 Bücher" selected={p[`price${n}_qty`] === '3 Bücher'}>3 Bücher</option>
+													<option value="5 Bücher" selected={p[`price${n}_qty`] === '5 Bücher'}>5 Bücher</option>
+													<option value="10 Bücher" selected={p[`price${n}_qty`] === '10 Bücher'}>10 Bücher</option>
 												</select>
 												<label class="input input-bordered input-sm w-1/2 flex items-center gap-1">
 													<input name="price{n}_amt" type="number" step="0.01" min="0.01" placeholder="0,00"
-														value={promo[`price${n}_amt`] ?? ''}
+														value={p[`price${n}_amt`] ?? ''}
 														class="currency w-full" />
 													<span class="text-base-content/40 text-xs shrink-0">€</span>
 												</label>
@@ -364,7 +365,7 @@
 							<td class="text-right">
 								<div class="flex items-center justify-end gap-1">
 									<button type="button" class="btn btn-ghost btn-xs btn-square" aria-label="Bearbeiten"
-										onclick={() => { editing = promo.id; const p = parseIcon(promo.icon); iconEditName = p.name; iconEditColor = p.color; editFrom = promo.valid_from; editTo = promo.valid_to; }}>
+										onclick={() => { editing = promo.id; const p = parseIcon(promo.icon); iconEditName = p.name; iconEditColor = p.color; editValidFrom = promo.valid_from; }}>
 										<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
 										</svg>

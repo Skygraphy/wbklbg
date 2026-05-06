@@ -1,13 +1,35 @@
 <script lang="ts">
 	import SectionWrapper from '$lib/ui/SectionWrapper.svelte';
 	import type { Promotion } from '$lib/types/promotion';
+	import { contactPrefill, setOrderPrefill } from '$lib/stores/contact-prefill';
 
 	interface Props {
 		promotions: Promotion[];
+		standardPrice: number;
+		orderPrefillMessage: string;
+		promotionMessage: string;
+		promotionInquiryMessage: string;
 	}
-	const { promotions }: Props = $props();
+	const { promotions, standardPrice, orderPrefillMessage, promotionMessage, promotionInquiryMessage }: Props = $props();
 
-	const STANDARD_PRICE = 39;
+	function prefillInquiry(promoName: string) {
+		contactPrefill.set({
+			subject: 'Anfrage',
+			qty: '',
+			message: promotionInquiryMessage.replace('{Aktion}', promoName)
+		});
+	}
+
+	function prefillPromotion(promoName: string, qty: string) {
+		const qtyNum = parseInt(qty, 10);
+		contactPrefill.set({
+			subject: 'Bestellung',
+			qty: String(qtyNum),
+			message: promotionMessage
+				.replace('{Aktion}', promoName)
+				.replace('{Anzahl}', String(qtyNum))
+		});
+	}
 
 	function formatDate(d: string) {
 		return new Date(d).toLocaleDateString('de-AT', { day: 'numeric', month: 'long' });
@@ -22,13 +44,15 @@
 	}
 
 	function savings(amt: number, qty: string): number | null {
-		const n = parseInt(qty);
+		const n = parseInt(qty, 10);
 		if (isNaN(n) || n < 1) return null;
-		return Math.round(n * STANDARD_PRICE - amt);
+		return Math.round(n * standardPrice - amt);
 	}
 
+	const today = new Date().toISOString().slice(0, 10);
+
 	function isUpcoming(validFrom: string): boolean {
-		return validFrom > new Date().toISOString().slice(0, 10);
+		return validFrom > today;
 	}
 
 	function parseIcon(icon: string): { name: string; color: string; isFA: boolean } {
@@ -49,10 +73,10 @@
 	<div class="max-w-5xl mx-auto">
 
 		<!-- Standardpreis – prominent -->
-		<div class="bg-primary text-primary-content rounded-bento shadow-xl p-10 flex flex-col sm:flex-row items-center gap-8 mb-8">
+		<div class="bg-primary text-primary-content rounded-bento shadow-xl p-6 sm:p-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-8">
 			<div class="flex flex-col items-center sm:items-start text-center sm:text-left flex-1">
 				<div class="text-xs font-bold tracking-widest uppercase opacity-60 mb-1">Standardpreis</div>
-				<div class="font-bold text-7xl leading-none">{STANDARD_PRICE} €</div>
+				<div class="font-bold text-6xl sm:text-7xl leading-none">{standardPrice} €</div>
 				<div class="text-sm opacity-70 mt-2">pro Exemplar</div>
 			</div>
 			<ul class="flex-1 space-y-2 text-sm opacity-85">
@@ -69,7 +93,7 @@
 					Direkt vom Verlag – schnelle Lieferung
 				</li>
 			</ul>
-			<a href="#kontakt" class="btn bg-primary-content text-primary hover:bg-wim-cream shrink-0 btn-lg shadow">
+			<a href="#kontakt" class="btn bg-primary-content text-primary hover:bg-wim-cream shrink-0 btn-lg shadow" onclick={() => setOrderPrefill(standardPrice, orderPrefillMessage)}>
 				Jetzt bestellen
 			</a>
 		</div>
@@ -97,18 +121,20 @@
 						<div class="text-sm font-bold text-base-content">{promo.name}</div>
 					</div>
 				</div>
-				<a href="#kontakt" class="btn btn-sm btn-outline btn-primary">Anfragen</a>
+				<a href="#kontakt" class="btn btn-sm btn-outline btn-primary" onclick={() => prefillInquiry(promo.name)}>Anfragen</a>
 			</div>
 			<div class="flex flex-wrap gap-3">
 				{#each options as opt}
 				{@const saved = savings(opt.amt, opt.qty)}
-				<div class="flex items-baseline gap-2 bg-base-200 rounded-xl px-4 py-2">
+				<a href="#kontakt"
+					onclick={() => prefillPromotion(promo.name, opt.qty)}
+					class="flex items-baseline gap-2 bg-base-200 hover:bg-primary/10 hover:ring-2 hover:ring-primary/30 rounded-xl px-4 py-2 transition-colors cursor-pointer">
 					<span class="text-xs text-base-content/50 font-medium">{opt.qty}</span>
 					<span class="text-lg font-bold text-base-content">{opt.amt % 1 === 0 ? opt.amt.toFixed(0) : opt.amt.toFixed(2)} €</span>
 					{#if saved && saved > 0}
 						<span class="text-[10px] text-secondary font-semibold">–{saved} €</span>
 					{/if}
-				</div>
+				</a>
 				{/each}
 			</div>
 			{#if promo.note}
