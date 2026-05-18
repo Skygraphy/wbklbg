@@ -42,11 +42,20 @@
 	<div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
 		<!-- Left: Familienfoto -->
 		<div class="flex justify-center">
-			<img
-				src="/images/Familienfoto.jpg"
-				alt="Familie Wohlmuth"
-				class="w-3/4 aspect-[3/4] object-cover rounded-bento shadow-lg"
-			/>
+			<picture>
+				<source
+					type="image/webp"
+					srcset="/images/webp/familienfoto-640.webp 640w, /images/webp/familienfoto-1280.webp 1280w"
+					sizes="(max-width: 767px) 56vw, 30vw"
+				/>
+				<img
+					src="/images/Familienfoto.jpg"
+					alt="Familie Wohlmuth"
+					loading="lazy"
+					decoding="async"
+					class="w-3/4 aspect-[3/4] object-cover rounded-bento shadow-lg"
+				/>
+			</picture>
 		</div>
 
 		<!-- Biography text -->

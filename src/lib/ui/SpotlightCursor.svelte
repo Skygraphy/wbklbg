@@ -11,6 +11,7 @@
 	let heroEl: HTMLDivElement;
 	let hasPointer = $state(false);
 	let scrollY = $state(0);
+	let rafId: number | null = null;
 
 	const parallaxFactor = 0.35;
 
@@ -24,13 +25,18 @@
 
 	function handleMouseMove(e: MouseEvent) {
 		if (!heroEl) return;
-		const rect = heroEl.getBoundingClientRect();
-		x = ((e.clientX - rect.left) / rect.width) * 100;
-		y = ((e.clientY - rect.top) / rect.height) * 100;
-		hasPointer = true;
+		if (rafId !== null) return;
+		rafId = requestAnimationFrame(() => {
+			rafId = null;
+			const rect = heroEl.getBoundingClientRect();
+			x = ((e.clientX - rect.left) / rect.width) * 100;
+			y = ((e.clientY - rect.top) / rect.height) * 100;
+			hasPointer = true;
+		});
 	}
 
 	function handleMouseLeave() {
+		if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
 		hasPointer = false;
 		x = 50;
 		y = 50;
@@ -45,13 +51,22 @@
 	class="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
 >
 	<!-- Parallax background image -->
-	<img
-		src="/images/hero-klosterneuburg.jpg"
-		alt=""
-		aria-hidden="true"
-		class="absolute left-0 w-full object-cover object-center pointer-events-none select-none"
-		style="height: 140%; top: -20%; transform: translateY({scrollY * parallaxFactor}px);"
-	/>
+	<picture>
+		<source
+			type="image/webp"
+			srcset="/images/webp/hero-800.webp 800w, /images/webp/hero-1280.webp 1280w, /images/webp/hero-1920.webp 1920w"
+			sizes="100vw"
+		/>
+		<img
+			src="/images/hero-klosterneuburg.jpg"
+			alt=""
+			aria-hidden="true"
+			fetchpriority="high"
+			decoding="async"
+			class="absolute left-0 w-full object-cover object-center pointer-events-none select-none"
+			style="height: 140%; top: -20%; transform: translateY({scrollY * parallaxFactor}px);"
+		/>
+	</picture>
 
 	<!-- Light cream overlay with subtle spotlight -->
 	<div
@@ -60,14 +75,14 @@
 	></div>
 
 	<!-- Main content -->
-	<div class="relative z-10 w-full section-padding" style="padding-bottom: 7rem;">
+	<div class="relative z-10 w-full section-padding" style="padding-bottom: 10rem;">
 		{@render children()}
 	</div>
 
 	<!-- Scroll indicator – anchored to hero bottom, outside content wrapper -->
-	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce pointer-events-none">
-		<span class="text-xs text-white/60">Mehr entdecken</span>
-		<svg class="h-5 w-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	<div class="absolute bottom-20 inset-x-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
+		<span class="text-xs text-white/70 animate-bounce inline-block">Mehr entdecken</span>
+		<svg class="h-6 w-6 text-white/70 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 		</svg>
 	</div>

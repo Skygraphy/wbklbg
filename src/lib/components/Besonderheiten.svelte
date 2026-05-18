@@ -69,11 +69,20 @@
 				{ name: 'Adventmarkt',        img: '/images/thumbs/12.jpg', color: 'rgba(240,190,180,0.92)' }
 			] as event}
 				<div class="group relative overflow-hidden rounded-bento cursor-default">
-					<img
-						src={event.img}
-						alt={event.name}
-						class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-					/>
+					<picture>
+						<source
+							type="image/webp"
+							srcset="/images/webp/thumbs/{event.img.split('/').pop()!.replace('.jpg', '.webp')} 200w"
+							sizes="(max-width: 1023px) calc(25vw - 0.5rem), calc(8.33vw - 0.5rem)"
+						/>
+						<img
+							src={event.img}
+							alt={event.name}
+							loading="lazy"
+							decoding="async"
+							class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+						/>
+					</picture>
 					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 					<div class="relative flex aspect-square items-end justify-center p-2">
 						<span

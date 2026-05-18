@@ -6,4 +6,5 @@ export interface PickupLocation {
 	email: string | null;
 	phone: string | null;
 	icon: string | null;
+	note: string | null;
 }

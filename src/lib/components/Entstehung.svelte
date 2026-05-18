@@ -91,13 +91,23 @@
 				<!-- Image placeholder / real image -->
 				<div class="aspect-square w-full overflow-hidden rounded-xl bg-base-300">
 					{#if !failedImages.has(i)}
-						<img
-							src={step.image}
-							alt={step.title}
-							class="h-full w-full object-cover"
-							style="object-position: {step.objectPosition ?? 'center'}"
-							onerror={() => onImageError(i)}
-						/>
+						{@const n = String(i + 1).padStart(2, '0')}
+						<picture>
+							<source
+								type="image/webp"
+								srcset="/images/webp/making_off/{n}-400.webp 400w, /images/webp/making_off/{n}-800.webp 800w"
+								sizes="(max-width: 639px) calc(100vw - 3rem), (max-width: 1023px) calc(50vw - 2.5rem), calc(33vw - 2rem)"
+							/>
+							<img
+								src={step.image}
+								alt={step.title}
+								loading="lazy"
+								decoding="async"
+								class="h-full w-full object-cover"
+								style="object-position: {step.objectPosition ?? 'center'}"
+								onerror={() => onImageError(i)}
+							/>
+						</picture>
 					{:else}
 						<div
 							class="flex h-full w-full flex-col items-center justify-center bg-base-300 text-base-content/30"

@@ -21,7 +21,7 @@
 	</div>
 
 	<!-- Stat cards -->
-	<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+	<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
 		{#each stats as stat}
 			<a href={stat.href} class="card bg-base-100 hover:shadow-md transition-shadow">
 				<div class="card-body p-5 gap-2">
@@ -46,18 +46,36 @@
 				<a href="/admin/orders" class="text-sm text-primary hover:underline">Alle anzeigen →</a>
 			</div>
 			<div class="card bg-base-100 overflow-hidden">
-				<table class="table table-sm">
-					<tbody>
-						{#each data.recentOrders as order}
-							<tr class="hover">
-								<td class="text-xs text-base-content/40">{formatDate(order.submitted_at)}</td>
-								<td class="font-medium">{order.name}</td>
-								<td><a href="mailto:{order.email}" class="text-primary text-sm hover:underline">{order.email}</a></td>
-								<td class="text-center text-sm">{order.qty ?? '–'} Stk.</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+				<!-- Desktop table -->
+				<div class="hidden sm:block overflow-x-auto">
+					<table class="table table-sm">
+						<tbody>
+							{#each data.recentOrders as order}
+								<tr class="hover">
+									<td class="text-xs text-base-content/40 whitespace-nowrap">{formatDate(order.submitted_at)}</td>
+									<td class="font-medium whitespace-nowrap">{order.name}</td>
+									<td><a href="mailto:{order.email}" class="text-primary text-sm hover:underline">{order.email}</a></td>
+									<td class="text-center text-sm whitespace-nowrap">{order.qty ?? '–'} Stk.</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+				<!-- Mobile cards -->
+				<div class="sm:hidden divide-y divide-base-200">
+					{#each data.recentOrders as order}
+						<div class="px-4 py-3 flex items-center justify-between gap-3">
+							<div class="min-w-0">
+								<div class="font-medium text-sm truncate">{order.name}</div>
+								<div class="text-xs text-base-content/40 mt-0.5">{formatDate(order.submitted_at)}</div>
+								<a href="mailto:{order.email}" class="text-primary text-xs hover:underline truncate block">{order.email}</a>
+							</div>
+							{#if order.qty}
+								<span class="badge badge-ghost shrink-0">{order.qty} Stk.</span>
+							{/if}
+						</div>
+					{/each}
+				</div>
 			</div>
 		</div>
 	{/if}

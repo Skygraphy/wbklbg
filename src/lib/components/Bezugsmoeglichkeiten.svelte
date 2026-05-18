@@ -54,17 +54,35 @@
 	<div class="mb-12 text-center">
 		<h2 class="section-heading">So bekommst du das Wimmelbuch</h2>
 		<p class="section-subheading">Online bestellen oder direkt in Klosterneuburg abholen</p>
-		<div class="flex flex-col sm:flex-row justify-center gap-6 mt-8 mx-auto max-w-xs">
-			<img
-				src="/images/Wimmelbuch_Deckblatt.jpg"
-				alt="Wimmelbuch Klosterneuburg – Deckblatt"
-				class="flex-1 rounded-bento shadow-xl"
-			/>
-			<img
-				src="/images/Wimmelbuch_Rückseite.jpg"
-				alt="Wimmelbuch Klosterneuburg – Rückseite"
-				class="flex-1 rounded-bento shadow-xl"
-			/>
+		<div class="flex flex-col sm:flex-row gap-6 mt-8">
+			<picture class="flex-1">
+				<source
+					type="image/webp"
+					srcset="/images/webp/deckblatt-320.webp 320w, /images/webp/deckblatt-640.webp 640w"
+					sizes="(max-width: 639px) calc(100vw - 4rem), calc(50vw - 3rem)"
+				/>
+				<img
+					src="/images/Wimmelbuch_Deckblatt.jpg"
+					alt="Wimmelbuch Klosterneuburg – Deckblatt"
+					loading="lazy"
+					decoding="async"
+					class="w-full rounded-bento shadow-xl"
+				/>
+			</picture>
+			<picture class="flex-1">
+				<source
+					type="image/webp"
+					srcset="/images/webp/rueckseite-320.webp 320w, /images/webp/rueckseite-640.webp 640w"
+					sizes="(max-width: 639px) calc(100vw - 4rem), calc(50vw - 3rem)"
+				/>
+				<img
+					src="/images/Wimmelbuch_Rückseite.jpg"
+					alt="Wimmelbuch Klosterneuburg – Rückseite"
+					loading="lazy"
+					decoding="async"
+					class="w-full rounded-bento shadow-xl"
+				/>
+			</picture>
 		</div>
 	</div>
 

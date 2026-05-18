@@ -205,7 +205,7 @@
 							</div>
 						{/each}
 					</div>
-					<textarea name="note" placeholder="Anmerkung (optional)" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none"></textarea>
+					<textarea name="note" placeholder="Bemerkung (HTML möglich)" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none"></textarea>
 					{#if addError}
 						<p class="col-span-2 text-error text-xs">{addError}</p>
 					{/if}
@@ -220,7 +220,8 @@
 
 	<!-- Table -->
 	<div class="card bg-base-100 overflow-hidden">
-		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap">
+		<div class="overflow-x-auto">
+		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap min-w-[560px]">
 			<thead>
 				<tr class="border-b border-base-200 text-base-content/60 text-xs uppercase tracking-wide">
 					<th class="w-8"></th>
@@ -294,7 +295,7 @@
 											</div>
 										{/each}
 									</div>
-									<textarea name="note" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none" placeholder="Anmerkung (optional)">{promo.note ?? ''}</textarea>
+									<textarea name="note" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none" placeholder="Bemerkung (HTML möglich)">{promo.note ?? ''}</textarea>
 									{#if editError}
 										<p class="col-span-2 text-error text-xs">{editError}</p>
 									{/if}
@@ -385,6 +386,7 @@
 				{/each}
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 

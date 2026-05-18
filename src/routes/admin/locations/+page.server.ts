@@ -17,6 +17,7 @@ export const actions: Actions = {
 			email: (d.get('email') as string)?.trim() || null,
 			phone: (d.get('phone') as string)?.trim() || null,
 			icon: (d.get('icon') as string)?.trim() || null,
+			note: (d.get('note') as string)?.trim() || null,
 		});
 	},
 	update: async ({ request }) => {
@@ -31,6 +32,7 @@ export const actions: Actions = {
 			email: (d.get('email') as string)?.trim() || null,
 			phone: (d.get('phone') as string)?.trim() || null,
 			icon: (d.get('icon') as string)?.trim() || null,
+			note: (d.get('note') as string)?.trim() || null,
 		});
 	},
 	toggle: async ({ request }) => {

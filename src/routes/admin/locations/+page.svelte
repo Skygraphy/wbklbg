@@ -116,6 +116,7 @@
 					<input name="address" placeholder="Adresse" class="input input-bordered input-sm" />
 					<input name="phone" placeholder="Telefon" class="input input-bordered input-sm" />
 					<input name="email" type="email" placeholder="E-Mail" class="input input-bordered input-sm col-span-2" />
+					<textarea name="note" placeholder="Bemerkung (HTML möglich)" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none"></textarea>
 					<div class="col-span-2 flex gap-2">
 						<button type="submit" class="btn btn-primary btn-sm">Speichern</button>
 						<button type="button" class="btn btn-ghost btn-sm" onclick={() => (showAdd = false)}>Abbrechen</button>
@@ -126,7 +127,8 @@
 	{/if}
 
 	<div class="card bg-base-100 overflow-hidden">
-		<table class="table table-sm [&_th]:whitespace-nowrap">
+		<div class="overflow-x-auto">
+		<table class="table table-sm [&_th]:whitespace-nowrap min-w-[520px]">
 			<thead>
 				<tr class="border-b border-base-200 text-base-content/60 text-xs uppercase tracking-wide">
 					<th class="w-8"></th>
@@ -176,6 +178,7 @@
 									<input name="address" value={loc.address ?? ''} placeholder="Adresse" class="input input-bordered input-sm" />
 									<input name="phone" value={loc.phone ?? ''} placeholder="Telefon" class="input input-bordered input-sm" />
 									<input name="email" type="email" value={loc.email ?? ''} placeholder="E-Mail" class="input input-bordered input-sm col-span-2" />
+									<textarea name="note" rows="2" class="textarea textarea-bordered textarea-sm col-span-2 resize-none" placeholder="Bemerkung (HTML möglich)">{loc.note ?? ''}</textarea>
 									<div class="col-span-2 flex gap-2">
 										<button type="submit" class="btn btn-primary btn-xs">Speichern</button>
 										<button type="button" class="btn btn-ghost btn-xs" onclick={() => (editing = null)}>Abbrechen</button>
@@ -256,6 +259,7 @@
 				{/each}
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 

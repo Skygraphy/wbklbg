@@ -162,7 +162,8 @@
 
 	<!-- Table -->
 	<div class="card bg-base-100 overflow-hidden">
-		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap">
+		<div class="overflow-x-auto">
+		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap min-w-[640px]">
 			<thead>
 				<tr class="border-b border-base-200 text-base-content/60 text-xs uppercase tracking-wide">
 					<th class="w-8"></th>
@@ -320,6 +321,7 @@
 				{/each}
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 

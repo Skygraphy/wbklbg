@@ -70,7 +70,7 @@
 		<p class="section-subheading">Direkt bei Ines bestellen – schnell und unkompliziert</p>
 	</div>
 
-	<div class="max-w-5xl mx-auto">
+	<div>
 
 		<!-- Standardpreis – prominent -->
 		<div class="bg-primary text-primary-content rounded-bento shadow-xl p-6 sm:p-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-8">

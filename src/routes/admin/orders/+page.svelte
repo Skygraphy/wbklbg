@@ -31,14 +31,15 @@
 	}
 </script>
 
-<div class="max-w-4xl">
+<div class="max-w-5xl">
 	<div class="mb-6">
 		<h1 class="text-2xl font-bold">Bestellungen & Anfragen</h1>
 		<p class="text-base-content/50 text-sm mt-0.5">{data.orders.length} Einsendungen</p>
 	</div>
 
 	<div class="card bg-base-100 overflow-hidden">
-		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap">
+		<div class="overflow-x-auto">
+		<table class="table table-sm [&_th]:whitespace-nowrap [&_td]:whitespace-nowrap min-w-[700px]">
 			<thead>
 				<tr class="border-b border-base-200 text-base-content/60 text-xs uppercase tracking-wide">
 					<th>Datum</th>
@@ -87,6 +88,7 @@
 				{/each}
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 

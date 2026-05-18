@@ -165,7 +165,7 @@ export async function deletePromotion(id: number): Promise<void> {
 
 export async function getPickupLocations(): Promise<PickupLocation[]> {
 	const rows = await sql`
-		SELECT id, name, active, address, email, phone, icon
+		SELECT id, name, active, address, email, phone, icon, note
 		FROM pickup_locations
 		WHERE active = true
 		ORDER BY sort_order ASC
@@ -175,7 +175,7 @@ export async function getPickupLocations(): Promise<PickupLocation[]> {
 
 export async function getAllPickupLocations(): Promise<PickupLocation[]> {
 	const rows = await sql`
-		SELECT id, name, active, address, email, phone, icon
+		SELECT id, name, active, address, email, phone, icon, note
 		FROM pickup_locations
 		ORDER BY sort_order ASC
 	`;
@@ -185,9 +185,9 @@ export async function getAllPickupLocations(): Promise<PickupLocation[]> {
 export async function createPickupLocation(data: Omit<PickupLocation, 'id'>): Promise<PickupLocation> {
 	const [{ maxOrder }] = await sql`SELECT COALESCE(MAX(sort_order), 0) AS "maxOrder" FROM pickup_locations`;
 	const [row] = await sql`
-		INSERT INTO pickup_locations (name, active, address, email, phone, icon, sort_order)
-		VALUES (${data.name}, ${data.active ?? true}, ${data.address ?? null}, ${data.email ?? null}, ${data.phone ?? null}, ${data.icon ?? null}, ${maxOrder + 1})
-		RETURNING id, name, active, address, email, phone, icon
+		INSERT INTO pickup_locations (name, active, address, email, phone, icon, note, sort_order)
+		VALUES (${data.name}, ${data.active ?? true}, ${data.address ?? null}, ${data.email ?? null}, ${data.phone ?? null}, ${data.icon ?? null}, ${data.note ?? null}, ${maxOrder + 1})
+		RETURNING id, name, active, address, email, phone, icon, note
 	`;
 	return row as PickupLocation;
 }
@@ -197,9 +197,10 @@ export async function updatePickupLocation(id: number, data: Omit<PickupLocation
 		UPDATE pickup_locations
 		SET name = ${data.name}, active = ${data.active},
 		    address = ${data.address ?? null}, email = ${data.email ?? null},
-		    phone = ${data.phone ?? null}, icon = ${data.icon ?? null}
+		    phone = ${data.phone ?? null}, icon = ${data.icon ?? null},
+		    note = ${data.note ?? null}
 		WHERE id = ${id}
-		RETURNING id, name, active, address, email, phone, icon
+		RETURNING id, name, active, address, email, phone, icon, note
 	`;
 	return row as PickupLocation;
 }
@@ -258,6 +259,12 @@ export type SettingKey =
 export async function getSetting(key: SettingKey): Promise<string | null> {
 	const [row] = await sql`SELECT value FROM settings WHERE key = ${key}`;
 	return row?.value ?? null;
+}
+
+export async function getSettings<K extends SettingKey>(keys: K[]): Promise<Record<K, string | null>> {
+	const rows = await sql`SELECT key, value FROM settings WHERE key = ANY(${keys})`;
+	const map = Object.fromEntries(rows.map((r) => [r.key, r.value])) as Record<K, string | null>;
+	return Object.fromEntries(keys.map((k) => [k, map[k] ?? null])) as Record<K, string | null>;
 }
 
 export async function updateSetting(key: SettingKey, value: string): Promise<void> {
