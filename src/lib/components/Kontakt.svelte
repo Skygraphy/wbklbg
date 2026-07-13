@@ -77,7 +77,7 @@
 		<div class="flex flex-col gap-6">
 			<div>
 				<h3 class="font-display text-2xl font-bold text-wim-brown">Ines Wohlmuth</h3>
-				<p class="text-base-content/60 text-sm mt-1">Autorin des Wimmelbuch Klosterneuburg</p>
+				<p class="text-base-content/60 text-sm mt-1">Autorin des Wimmelbuches Klosterneuburg</p>
 			</div>
 
 			<div class="space-y-4">
