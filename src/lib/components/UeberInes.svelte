@@ -61,7 +61,7 @@
 		<!-- Biography text -->
 		<div class="flex flex-col gap-5">
 			<div>
-				<h3 class="font-display text-3xl font-bold text-wim-brown">Ines Wohlmuth</h3>
+				<h3 class="font-display text-3xl font-bold text-base-content">Ines Wohlmuth</h3>
 				<p class="text-primary font-semibold mt-1">Autorin und Illustratorin · Lehrerin · Klosterneuburgerin</p>
 			</div>
 
