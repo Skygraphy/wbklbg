@@ -6,9 +6,10 @@
 
 	type Status = 'idle' | 'sending' | 'success' | 'error';
 
-	const { contactEmail = 'kontakt@wimmelbuch-klosterneuburg.at', contactIsbn = '' }: {
+	const { contactEmail = 'kontakt@wimmelbuch-klosterneuburg.at', contactIsbn = '', standardPrice }: {
 		contactEmail?: string;
 		contactIsbn?: string;
+		standardPrice: number;
 	} = $props();
 
 	let status = $state<Status>('idle');
@@ -142,6 +143,9 @@
 		<div class="card bg-base-100 shadow-md">
 			<div class="card-body gap-4">
 				<h3 class="font-display text-xl font-bold">Bestellung & Anfragen</h3>
+				<p class="text-base font-semibold text-primary -mt-2">
+					{standardPrice} € pro Exemplar, zzgl. 4,65 € Versand
+				</p>
 
 				{#if status === 'success'}
 					<div class="flex flex-col gap-4">

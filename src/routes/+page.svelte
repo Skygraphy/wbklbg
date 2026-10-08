@@ -22,7 +22,7 @@
 	<Besonderheiten />
 	<Entstehung />
 	<UeberInes />
-	<Kontakt contactEmail={data.contactEmail} contactIsbn={data.contactIsbn} />
+	<Kontakt contactEmail={data.contactEmail} contactIsbn={data.contactIsbn} standardPrice={data.standardPrice} />
 </main>
 
 <!-- Footer -->
