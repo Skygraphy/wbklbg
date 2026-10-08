@@ -78,6 +78,7 @@
 				<div class="text-xs font-bold tracking-widest uppercase opacity-60 mb-1">Standardpreis</div>
 				<div class="font-bold text-6xl sm:text-7xl leading-none">{standardPrice} €</div>
 				<div class="text-sm opacity-70 mt-2">pro Exemplar</div>
+				<div class="text-sm font-semibold opacity-90 mt-1">zzgl. 4,65 € Versand</div>
 			</div>
 			<ul class="flex-1 space-y-2 text-sm opacity-85">
 				<li class="flex items-center gap-2">
